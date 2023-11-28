@@ -1,0 +1,79 @@
+en:
+  change_language: |
+    What language would you like to use?
+        Español  (es)
+        Français (fr)
+        Otherwise, continue with English.
+  welcome: "Welcome to Calculator! Enter your name:"
+  named_greet: "Hi, %{name}!"
+  valid_name: "Make sure to enter a valid name."
+  first_num: "What's the first number?"
+  second_num: "What's the second number?"
+  valid_num: "That doesn't look like a valid number"
+  op_prompt: |
+    What Operation would you like to perform?
+        1) add
+        2) subtract
+        3) multiply
+        4) divide
+  re_op: "Must choose 1, 2, 3, or 4"
+  confirmation: "%{op_word} the two numbers..."
+  op_verb:
+    - "Adding"
+    - "Subtracting"
+    - "Multiplying"
+    - "Dividing"
+  answer: "The result is %{result}."
+  re_calc: "Do you want to perform another calculation? (Y to calculate again)"
+  yes_letter: "y"
+  goodbye: "Thank you for using The Calculator, Good Bye."
+
+es:
+  welcome: "¡Bienvenido a Calculadora! Introduzca su nombre:"
+  named_greet: "Hola, %{name}!"
+  valid_name: "Asegúrese de ingresar un nombre válido."
+  first_num: "¿Cuál es el primer número?"
+  second_num: "¿Cuál es el segundo número?"
+  valid_num: "Ese no parece un número válido."
+  op_prompt: |
+    ¿Qué operación te gustaría realizar?
+        1) agregar
+        2) sustraer
+        3) multiplicar
+        4) dividir
+  re_op: "Debe elegir 1, 2, 3, or 4"
+  confirmation: "%{op_word} los dos numeros..."
+  op_verb:
+  - "Añadiendo"
+  - "Restando"
+  - "Multiplicando"
+  - "Dividiendo"
+  answer: "El resultado es %{result}."
+  re_calc: "¿Quieres realizar otro cálculo? (S para calcular nuevamente)"
+  yes_letter: "s"
+  goodbye: "Gracias por usar La Calculadora, Adiós."
+
+fr:
+  welcome: "Bienvenue sur Calculatrice! Entrez votre nom:"
+  named_greet: "Bonjour, %{name}!"
+  valid_name: "Assurez-vous de saisir un nom valide."
+  first_num: "Quel est le premier numéro?"
+  second_num: "Quel est le deuxième numéro?"
+  valid_num: "Cela ne ressemble pas à un numéro valide"
+  op_prompt: |
+    Quelle opération souhaiteriez-vous réaliser ?
+        1) ajouter
+        2) soustraire
+        3) multiplier
+        4) diviser
+  re_op: "Doit choisir 1, 2, 3 ou 4"
+  confirmation: "%{op_word} les deux nombres..."
+  op_verb:
+    - "Ajouter"
+    - "Soustraction"
+    - "Multiplier"
+    - "Division"
+  answer: "Le résultat est %{result}."
+  re_calc: "Voulez-vous effectuer un autre calcul ? (O pour recalculer)"
+  yes_letter: "o"
+  goodbye: "Merci d'avoir utilisé la calculatrice, au revoir."
