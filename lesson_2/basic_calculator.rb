@@ -53,7 +53,7 @@ the problem.
 
 **Clarifying Questions:**
 
-1.  Could ask if we should use ints of floats, but I think the code will be
+1.  Could ask if we should use ints or floats, but I think the code will be
   naturally agnostic.
 2.  Should we keep offering to complete calculations?
 3.
