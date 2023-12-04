@@ -71,7 +71,7 @@ As a rule of thumb, you can keep the number of mental models to one if it fully,
 and accurately, captures the requirements of the problem.
 
 **Mental Model:**
-  Ask for the two operands, in relevant order.  Ask for the operator, and check 
+  Ask for the two operands, in relevant order.  Ask for the operator, and check
   for division by 0.  Use the operands and operator to perform the calculation
   and display the result.  (optionally) Offer the option to exit or restart every step of the way.
   After displaying a result, offer to use the result as the first operand of the next calc.
@@ -202,7 +202,7 @@ Code
 # as my algorithm glossed over the necessary control expressions.
 # Still, having the scaffolding of an algorithm was helpful.
 
-def display_legend(result=false)
+def display_legend(result: false)
   puts "Enter 'x' to exit or 'r' to restart."
   puts "Enter 'c' to continue calculating with\n#{result} as the first number" if result
   print "> "
@@ -211,12 +211,12 @@ end
 def control_check(string)
   case string
   when "x"
-    return true
+    true
   when 'r'
     calc()
-    return true
+    true
   else
-    return false
+    false
   end
 end
 
@@ -267,7 +267,7 @@ def calc(prev=nil)
   puts "Applying the #{op} operation to the numbers #{num1} and #{num2} results in #{result}.\n\n"
 
   loop do
-    display_legend result
+    display_legend result: result
     com = gets.chomp
     return if control_check com.downcase
     if com.downcase == 'c'
@@ -276,7 +276,6 @@ def calc(prev=nil)
     end
     puts "Not a valid Command, please try again."
   end
-
 end
 
 calc()

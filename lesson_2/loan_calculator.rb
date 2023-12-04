@@ -24,14 +24,16 @@ PEDAC Template
 ---
 
 **Implicit Requirements:**
-  > Accepting input for annual interest in percent, but converting to decimal notation for calculations
+  > Accepting input for annual interest in percent,
+    but converting to decimal notation for calculations.
   > It is implied that we should round dollar amounts to the nearest cent
 
 ---
 
 **Clarifying Questions:**
 
-1. Presumably when the specifications say "loan duration" that input is denominated in years?
+1. Presumably when the specifications say "loan duration"
+   that input is denominated in years?
 2.
 3.
 
@@ -39,8 +41,10 @@ PEDAC Template
 
 **Mental Model:**
   > Ask for the principal loan amount, the APR, and the loan duration.
-  > Perform conversion of APR to monthly interest, and duration in years to duration in months
-  > Use the given algorithm to compute monthly payments from Principal, monthly interest, and monthly duration.
+  > Perform conversion of APR to monthly interest,
+    and duration in years to duration in months.
+  > Use the given algorithm to compute monthly payments from Principal,
+    monthly interest, and monthly duration.
   > Display the results
 
 ---
@@ -96,7 +100,6 @@ Algorithm
     j = APR / 1200
   > Convert Term from years to months
     n = y * 12
-  
   > Deal with edge cases of apr or term being 0
 
   > Use n, j, and p to compute monthly payments
@@ -110,64 +113,52 @@ Code
 =end
 
 def get_float
-  float = gets.chomp.gsub(/[,_]/, '')  # remove magnitude 3 delimiters
-  Float(float, exception: false) # returns false if error thrown !does not distinguish between error types!
+  loop do
+    float = gets.chomp.gsub(/[,_$%]/, '') # remove magnitude 3 delimiters, '$' and '%'
+    float = Float(float, exception: false)
+    # returns false if error thrown !does not distinguish between error types!
+    break float if float && float >= 0.0
+    puts "=> Please enter a valid non-negative number:"
+  end
 end
 
 def format_number(num)
   whole, decimal = num.to_s.split('.')
-  i = -4
-  whole ||= '0'
-  while(-i <= whole.length)
+  i = -4 # index at which to start adding commas
+  # whole ||= '0'
+  while -i <= whole.length
     whole.insert(i, ',')
     i -= 4
   end
-  decimal ||= '0'
-  decimal << '0' while(decimal.length < 2)
-  str = whole + '.' + decimal
+  # decimal ||= '0'
+  decimal << '0' while decimal.length < 2
+  "#{whole}.#{decimal}"
 end
 
 puts "=> Welcome to the Loan Calculator."
 puts "=> Please enter the amount of the loan (principal):"
-
-principal = ''
-loop do
-  principal = get_float
-  break if principal && principal >= 0.0
-  puts "=> Please enter a valid non-negative number:"
-end
+principal = get_float
 
 puts "=> Please enter the APR (as a percentage):"
-apr = ''
-loop do
-  apr = get_float
-  break if apr && apr >= 0.0
-  puts "=> Please enter a valid non-negativ=> e number:"
-end
+apr = get_float
 
 puts "=> Please enter the term of the loan (expressed in years):"
-term = ''
-loop do
-  term = get_float
-  break if term && term >= 0.0
-  puts "=> Please enter a valid non-negative number:"
-end
+term = get_float
 
-months = (term * 12).round(0)
+months = (term * 12).round(0).to_i
 monthly_interest = apr / 1200
 
-if months == 0.0    # edge case, not a loan
+if months == 0   # edge case, not a loan
   payment = principal
   months = 1        # for output purposes
 elsif apr < 1.0e-9  # floating point precision starting to "matter"
   payment = principal / months  # treat apr as '0.0' requiring a simpler formula
 else
-  payment = principal * (monthly_interest / (1 - (1 + monthly_interest)**(-months)))
+  payment = principal * (monthly_interest / (1 - ((1 + monthly_interest)**-months)))
 end
-p principal
-p principal.round(2)
-
-puts "=> Computing amortization schedule for a loan of $#{format_number(principal.round(2))}"
+principal = format_number(principal.round(2))
+payment = format_number(payment.round(2))
+puts "=> Computing amortization schedule for a loan of $#{principal}"
 puts "=> with an APR of #{apr}% and a term of #{term} years...\n\n"
 
-puts "=> This loan will require #{months} monthly payments of $#{format_number(payment.round(2))}"
+puts "=> This loan will require #{months} monthly payments of $#{payment}"

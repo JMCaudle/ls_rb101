@@ -5,6 +5,8 @@
 
 DEFAULT_LANG = 'en'
 $language = DEFAULT_LANG
+# Let's come back in and make a class called UserData
+# instead of having a global variable
 
 require 'yaml'
 MESSAGES = YAML.load_file 'calculator_messages.yml'
@@ -40,7 +42,7 @@ def operation_to_message(op)
   #               'Dividing'
   #             end
   # n = 1 + 2
-  # op_string  
+  # op_string
   MESSAGES[$language]['op_verb'][op.to_i - 1]
 end
 
@@ -48,7 +50,7 @@ prompt 'change_language'
 lang = gets.chomp.downcase
 if lang.start_with? 'es'
   $language = 'es'
-elsif lang. start_with? 'fr'
+elsif lang.start_with? 'fr'
   $language = 'fr'
 end
 
@@ -63,7 +65,7 @@ loop do
     break
   end
 end
-prompt('named_greet', {:name => name})
+prompt('named_greet', { name: name })
 
 loop do
   number1 = ''
@@ -88,13 +90,14 @@ loop do
     end
   end
 
-  operator_prompt = <<-MSG
-What Operation would you like to perform?
-    1) add
-    2) subtract
-    3) multiply
-    4) divide
-    MSG
+  #   operator_prompt = <<-MSG
+  # What Operation would you like to perform?
+  #     1) add
+  #     2) subtract
+  #     3) multiply
+  #     4) divide
+  #   MSG
+
   prompt 'op_prompt'
 
   operator = ''
@@ -107,7 +110,7 @@ What Operation would you like to perform?
     end
   end
 
-  prompt 'confirmation', { op_word: operation_to_message(operator)}
+  prompt 'confirmation', { op_word: operation_to_message(operator) }
 
   result =  case operator
             when '1'
