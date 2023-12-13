@@ -11,13 +11,15 @@ def get_valid_float
   end
 end
 
-def compute_payments(principal, apr, years)
-  months = (years * 12).round(0).to_i
+def compute_months(years)
+  (years * 12).round(0).to_i
+end
+
+def compute_payments(principal, apr, months)
   monthly_interest = apr / 1200
 
   if months == 0 # edge case, not a loan
     payment = principal
-    months = 1 # for output purposes
   elsif apr < 1.0e-9 # floating point precision starting to "matter"
     payment = principal / months # treat apr as '0' requiring a simpler formula
   else
@@ -46,7 +48,9 @@ apr = get_valid_float
 prompt "Please enter the term of the loan (expressed in years):"
 years = get_valid_float
 
-months, payment = compute_payments(principal, apr, years)
+months = compute_months(years)
+payment = compute_payments(principal, apr, months)
+months = 1 if months == 0
 
 principal = format_number(principal.round(2))
 payment = format_number(payment.round(2))

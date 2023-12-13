@@ -101,7 +101,7 @@ Code
 =end
 
 def repeat(string, int)
-  int.times {puts string}
+  int.times { puts string }
 end
 
 repeat("Hello", 3)
