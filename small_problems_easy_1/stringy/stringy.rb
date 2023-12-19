@@ -1,8 +1,7 @@
-def stringy(int)
-  puts int
+def stringy(int, start = 1)
   str = ''
-  if int > 0
-    (1..int).each { |i| str << (i % 2).to_s }
+  int.times do |index|
+    str += ((index + start) % 2).to_s
   end
   str
 end
@@ -13,3 +12,5 @@ puts stringy(4) == '1010'
 puts (stringy 7) == '1010101'
 
 puts stringy(0) == ''
+
+puts stringy(7, 0)
